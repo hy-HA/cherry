@@ -21,5 +21,11 @@ public class StudentController {
         return ResponseEntity.ok(response);
     }
 
+    @ResponseBody
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable Long id){
+        studentService.deleteStudent(id);
+    }
+
 
 }

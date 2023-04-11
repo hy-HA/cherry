@@ -1,8 +1,10 @@
 package cherry.domain;
 
+import cherry.domain.base.BaseEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,8 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name="student")
-public class Student {
+@Where(clause="is_deleted = false")
+public class Student extends BaseEntity {
 
     @Id @GeneratedValue
     private Long id;

@@ -11,8 +11,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class StudentForm {
 
-    private Long id;
-
     @NotNull
     private String studentName;
 }
