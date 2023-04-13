@@ -1,7 +1,7 @@
 package cherry.controller;
 
-import cherry.dto.StudentForm;
-import cherry.dto.StudentResponse;
+import cherry.dto.student.StudentForm;
+import cherry.dto.student.StudentResponse;
 import cherry.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,8 @@
 package cherry.service;
 
 import cherry.domain.Student;
-import cherry.dto.StudentForm;
-import cherry.dto.StudentResponse;
+import cherry.dto.student.StudentForm;
+import cherry.dto.student.StudentResponse;
 import cherry.exception.DomainException;
 import cherry.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;

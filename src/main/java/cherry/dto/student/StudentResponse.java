@@ -1,4 +1,4 @@
-package cherry.dto;
+package cherry.dto.student;
 
 import cherry.domain.Student;
 import lombok.AllArgsConstructor;
