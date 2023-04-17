@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/student")
@@ -26,6 +28,21 @@ public class StudentController {
     public void deleteStudent(@PathVariable Long id){
         studentService.deleteStudent(id);
     }
+
+    @ResponseBody
+    @GetMapping("/{id}")
+    public ResponseEntity<StudentResponse> getStudent(@PathVariable Long id){
+        StudentResponse response = studentService.getStudent(id);
+        return ResponseEntity.ok(response);
+    }
+
+    @ResponseBody
+    @GetMapping
+    public ResponseEntity<List<StudentResponse>> getStudentList(){
+        List<StudentResponse> response = studentService.getStudentList();
+        return ResponseEntity.ok(response);
+    }
+
 
 
 }

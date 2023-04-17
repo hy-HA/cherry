@@ -4,10 +4,14 @@ import cherry.domain.Subject;
 import cherry.dto.subject.SubjectForm;
 import cherry.dto.subject.SubjectResponse;
 import cherry.exception.DomainException;
+import cherry.exception.NullException;
 import cherry.repository.SubjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +22,9 @@ public class SubjectService {
     public SubjectResponse createSubject(SubjectForm request){
 
         //TODO null예외처리 하기
+        if(request.getSubjectType() == null) {
+            throw new NullException(request.getSubjectType());
+        }
 
         //subject 객체 생성
         Subject subject = Subject.builder()
@@ -35,4 +42,22 @@ public class SubjectService {
                 .orElseThrow(() -> DomainException.notFoundRow(id));
         subject.delete();
     }
+
+    @Transactional
+    public SubjectResponse getSubject(Long id){
+        Subject subject = subjectRepository.findById(id)
+                .orElseThrow(()->DomainException.notFoundRow(id));
+        return new SubjectResponse(subject);
+    }
+
+    @Transactional
+    public List<SubjectResponse> getSubjectList(){
+        List<SubjectResponse> list = new ArrayList<>();
+        for(Subject subject : subjectRepository.findAll()){
+            SubjectResponse response = new SubjectResponse(subject);
+            list.add(response);
+        }
+        return list;
+    }
+
 }

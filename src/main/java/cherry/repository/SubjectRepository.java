@@ -1,8 +1,11 @@
 package cherry.repository;
 
 import cherry.domain.Subject;
+import cherry.domain.SubjectType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SubjectRepository extends JpaRepository<Subject, Long> {
+import java.util.Optional;
 
+public interface SubjectRepository extends JpaRepository<Subject, Long> {
+    Optional<Subject> findBySubjectType(SubjectType subjectType);
 }

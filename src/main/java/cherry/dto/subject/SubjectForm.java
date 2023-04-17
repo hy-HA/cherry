@@ -13,6 +13,6 @@ import javax.validation.constraints.NotNull;
 @Schema(description = "과목정보")
 public class SubjectForm {
 
-    @NotNull
+    @NotNull(message = "이름은 필수값입니다")
     private String subjectType;
 }

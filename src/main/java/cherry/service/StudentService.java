@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class StudentService {
@@ -35,5 +38,22 @@ public class StudentService {
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> DomainException.notFoundRow(id));
         student.delete();
+    }
+
+    @Transactional
+    public StudentResponse getStudent(Long id){
+        Student student = studentRepository.findById(id)
+                .orElseThrow(()->DomainException.notFoundRow(id));
+        return new StudentResponse(student);
+    }
+
+    @Transactional
+    public List<StudentResponse> getStudentList(){
+        List<StudentResponse> list = new ArrayList<>();
+        for (Student student : studentRepository.findAll()){
+            StudentResponse response = new StudentResponse(student);
+            list.add(response);
+        }
+        return list;
     }
 }

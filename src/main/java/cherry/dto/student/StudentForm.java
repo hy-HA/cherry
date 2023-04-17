@@ -11,6 +11,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class StudentForm {
 
-    @NotNull
+    @NotNull(message = "이름은 필수값입니다")
     private String studentName;
 }
