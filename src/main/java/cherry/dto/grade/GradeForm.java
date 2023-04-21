@@ -14,14 +14,14 @@ public class GradeForm {
     @NotNull(message = "이름은 필수값입니다")
     private String studentName;
     @NotNull(message = "과목은 필수값입니다")
-    private String subjectType;
+    private String subjectName;
     @NotNull(message = "점수는 필수값입니다")
     private Long score;
 
-    public String getStringSubjectType(){
-        return this.subjectType;
-    }
+//    public String getStringSubjectType(){
+//        return this.subjectType;
+//    }
     public SubjectType getSubjectType(){
-        return SubjectType.valueOf(subjectType);
+        return SubjectType.valueOf(subjectName);
     }
 }

@@ -1,18 +1,21 @@
 package cherry.domain;
 
 import cherry.dto.grade.GradeForm;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Getter
 @Entity
+@Table(name="grade")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Grade {
 
     @Id @GeneratedValue
+    @Column(name="grade_id")
     private Long id;
     private Long score;
 
@@ -30,6 +33,5 @@ public class Grade {
         grade.score=score;
         return grade;
     }
-
 
 }

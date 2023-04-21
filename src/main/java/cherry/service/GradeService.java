@@ -5,6 +5,7 @@ import cherry.domain.Student;
 import cherry.domain.Subject;
 import cherry.dto.grade.GradeForm;
 import cherry.dto.grade.GradeResponse;
+import cherry.dto.grade.GradeUpdateForm;
 import cherry.exception.DomainException;
 import cherry.exception.NullException;
 import cherry.repository.GradeRepository;
@@ -13,6 +14,8 @@ import cherry.repository.SubjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.validation.constraints.NotNull;
 
 @Service
 @RequiredArgsConstructor
@@ -28,10 +31,24 @@ public class GradeService {
 
         Student student = studentRepository.findByStudentName(request.getStudentName())
                 .orElseThrow(()-> DomainException.notFoundRow(request.getStudentName()));
+
         Subject subject = subjectRepository.findBySubjectType(request.getSubjectType())
-                .orElseThrow(()-> DomainException.notFoundRow(request.getStringSubjectType()));
+                .orElseThrow(()-> DomainException.notFoundRow(request.getSubjectName()));
+
         Grade grade = Grade.of(student,subject, request.getScore());
+
         gradeRepository.save(grade);
+        return new GradeResponse(grade);
+
+    }
+
+    public GradeResponse updateGrade(Long id, GradeUpdateForm request) {
+
+        Grade grade = gradeRepository.findById(id)
+                .orElseThrow(()->DomainException.notFoundRow(id));
+
+        Grade newGrade = Grade.of(grade.getStudent(),grade.getSubject(),request.getScore());
+        grade = newGrade;
         return new GradeResponse(grade);
 
     }
