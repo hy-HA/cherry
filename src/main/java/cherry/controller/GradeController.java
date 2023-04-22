@@ -6,6 +6,7 @@ import cherry.dto.grade.GradeResponse;
 import cherry.dto.grade.GradeUpdateForm;
 import cherry.service.GradeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,11 +26,11 @@ public class GradeController {
 
     @PatchMapping ("/{id}/score")
     @ResponseBody
-    public ResponseEntity<GradeResponse> updateGrade(
+    public ResponseEntity<Void> updateGrade(
                                                 @PathVariable Long id,
                                                 @RequestBody GradeUpdateForm request){
         GradeResponse response = gradeService.updateGrade(id,request);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }
