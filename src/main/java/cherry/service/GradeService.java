@@ -42,14 +42,12 @@ public class GradeService {
 
     }
 
-    public GradeResponse updateGrade(Long id, GradeUpdateForm request) {
+    @Transactional
+    public void updateGrade(Long id, GradeUpdateForm request) {
 
         Grade grade = gradeRepository.findById(id)
                 .orElseThrow(()->DomainException.notFoundRow(id));
 
-        Grade newGrade = Grade.of(grade.getStudent(),grade.getSubject(),request.getScore());
-        grade = newGrade;
-        return new GradeResponse(grade);
-
+        grade.updateScore(request.getScore());
     }
 }

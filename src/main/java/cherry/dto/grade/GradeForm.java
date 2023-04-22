@@ -18,9 +18,6 @@ public class GradeForm {
     @NotNull(message = "점수는 필수값입니다")
     private Long score;
 
-//    public String getStringSubjectType(){
-//        return this.subjectType;
-//    }
     public SubjectType getSubjectType(){
         return SubjectType.valueOf(subjectName);
     }

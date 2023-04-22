@@ -25,6 +25,7 @@ public class Grade {
     @ManyToOne
     private Subject subject;
 
+
     public static Grade of(Student student,Subject subject,Long score){
 
         Grade grade = new Grade();
@@ -34,4 +35,14 @@ public class Grade {
         return grade;
     }
 
+
+    public String getSubjectType(){
+        return this.subject.getSubjectType();
+    }
+    public String getStudentName(){
+        return this.student.getStudentName();
+    }
+    public void updateScore(Long score){
+        this.score = score;
+    }
 }

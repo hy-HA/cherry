@@ -29,8 +29,8 @@ public class GradeController {
     public ResponseEntity<Void> updateGrade(
                                                 @PathVariable Long id,
                                                 @RequestBody GradeUpdateForm request){
-        GradeResponse response = gradeService.updateGrade(id,request);
-        return ResponseEntity.status(HttpStatus.OK).build();
+       gradeService.updateGrade(id,request);
+       return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

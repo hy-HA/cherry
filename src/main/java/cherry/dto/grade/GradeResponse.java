@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class GradeResponse {
 
-
+    private Long id;
     private String studentName;
 
     private String subjectType;
@@ -19,8 +19,9 @@ public class GradeResponse {
     private Long score;
 
     public GradeResponse(Grade grade){
-        this.studentName = grade.getStudent().getStudentName();
-        this.subjectType = grade.getSubject().getSubjectType();
+        this.id=grade.getId();
+        this.studentName = grade.getStudentName();
+        this.subjectType = grade.getSubjectType();
         this.score=grade.getScore();
     }
 }
