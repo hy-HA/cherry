@@ -1,12 +1,14 @@
 package cherry.service;
 
 import cherry.domain.Subject;
+import cherry.dto.subject.SubjectAvgScore;
 import cherry.dto.subject.SubjectForm;
 import cherry.dto.subject.SubjectResponse;
 import cherry.exception.DomainException;
 import cherry.exception.NullException;
 import cherry.repository.SubjectRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,6 +60,16 @@ public class SubjectService {
             list.add(response);
         }
         return list;
+    }
+
+    @Transactional
+    public SubjectAvgScore getSubjectAvgScore(Long id){
+        Subject subject = subjectRepository.findById(id).orElseThrow(()->DomainException.notFoundRow(id));
+        return SubjectAvgScore.builder()
+                .subjectName(subject.getSubjectType())
+                .score(subject.getSubjectAvgScore())
+                .build();
+
     }
 
 }

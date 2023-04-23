@@ -33,4 +33,9 @@ public class GradeController {
        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteGrade(@PathVariable Long id){
+        gradeService.deleteGrade(id);
+    }
+
 }

@@ -2,6 +2,7 @@ package cherry.controller;
 
 import cherry.dto.student.StudentForm;
 import cherry.dto.student.StudentResponse;
+import cherry.dto.student.StudentScoreResponse;
 import cherry.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,12 @@ public class StudentController {
         return ResponseEntity.ok(response);
     }
 
+    @ResponseBody
+    @GetMapping("/{id}/avg-score")
+    public ResponseEntity<StudentScoreResponse> getStudentAvgScor(@PathVariable Long id){
+        StudentScoreResponse response = studentService.getStudentAvgScore(id);
+        return ResponseEntity.ok(response);
+    }
 
 
 }

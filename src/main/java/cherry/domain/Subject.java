@@ -1,6 +1,7 @@
 package cherry.domain;
 
 import cherry.domain.base.BaseEntity;
+import cherry.dto.subject.SubjectAvgScore;
 import cherry.exception.TypeException;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -23,6 +26,8 @@ public class Subject extends BaseEntity {
     @Column(name = "subject_type",unique = true)
     private SubjectType subjectType;
 
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+    private List<Grade> grades = new ArrayList<>();
     //Subject 생성 : SubjectForm에서 받은 String 필드로 Subject객체 생성하기
     @Builder
     public Subject(String subjectType){
@@ -43,4 +48,10 @@ public class Subject extends BaseEntity {
         return subjectType.name();
     }
 
+    public double getSubjectAvgScore(){
+        return grades.stream()
+                .mapToDouble(Grade::getScore)
+                .average()
+                .orElseThrow();
+    }
 }

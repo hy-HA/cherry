@@ -3,6 +3,7 @@ package cherry.service;
 import cherry.domain.Student;
 import cherry.dto.student.StudentForm;
 import cherry.dto.student.StudentResponse;
+import cherry.dto.student.StudentScoreResponse;
 import cherry.exception.DomainException;
 import cherry.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
@@ -55,5 +56,12 @@ public class StudentService {
             list.add(response);
         }
         return list;
+    }
+
+    @Transactional(readOnly = true)
+    public StudentScoreResponse getStudentAvgScore(Long id) {
+        Student student = studentRepository.findById(id).orElseThrow(()->DomainException.notFoundRow(id));
+        double score = student.getStudentAvgScore();
+        return new StudentScoreResponse(student.getStudentName(),score);
     }
 }

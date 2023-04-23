@@ -50,4 +50,11 @@ public class GradeService {
 
         grade.updateScore(request.getScore());
     }
+
+    @Transactional
+    public void deleteGrade(Long id) {
+
+        Grade grade = gradeRepository.findById(id).orElseThrow(()-> DomainException.notFoundRow(id));
+        grade.delete();
+    }
 }

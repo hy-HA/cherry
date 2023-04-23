@@ -1,10 +1,12 @@
 package cherry.domain;
 
+import cherry.domain.base.BaseEntity;
 import cherry.dto.grade.GradeForm;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -12,16 +14,15 @@ import javax.persistence.*;
 @Entity
 @Table(name="grade")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Grade {
+@Where(clause = "is_deleted = false")
+public class Grade extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name="grade_id")
     private Long id;
     private Long score;
-
     @ManyToOne
     private Student student;
-
     @ManyToOne
     private Subject subject;
 
@@ -45,4 +46,5 @@ public class Grade {
     public void updateScore(Long score){
         this.score = score;
     }
+
 }
