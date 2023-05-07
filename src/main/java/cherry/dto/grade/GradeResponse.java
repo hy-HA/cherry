@@ -16,7 +16,7 @@ public class GradeResponse {
 
     private String subjectType;
 
-    private Long score;
+    private Integer score;
 
     public GradeResponse(Grade grade){
         this.id=grade.getId();

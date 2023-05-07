@@ -1,6 +1,7 @@
 package cherry.domain;
 
 import cherry.domain.base.BaseEntity;
+import cherry.domain.value.Score;
 import cherry.dto.grade.GradeForm;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -20,19 +21,21 @@ public class Grade extends BaseEntity {
     @Id @GeneratedValue
     @Column(name="grade_id")
     private Long id;
-    private Long score;
+
+    @Convert(converter = Score.ScoreConverter.class)
+    private Score score;
     @ManyToOne
     private Student student;
     @ManyToOne
     private Subject subject;
 
 
-    public static Grade of(Student student,Subject subject,Long score){
+    public static Grade of(Student student,Subject subject,int score){
 
         Grade grade = new Grade();
         grade.student=student;
         grade.subject=subject;
-        grade.score=score;
+        grade.score=new Score(score);
         return grade;
     }
 
@@ -43,8 +46,12 @@ public class Grade extends BaseEntity {
     public String getStudentName(){
         return this.student.getStudentName();
     }
-    public void updateScore(Long score){
-        this.score = score;
+    public void updateScore(int score){
+        this.score = new Score(score);
+    }
+
+    public Integer getScore(){
+        return score.getValue();
     }
 
 }

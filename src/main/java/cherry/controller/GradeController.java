@@ -5,6 +5,7 @@ import cherry.dto.grade.GradeForm;
 import cherry.dto.grade.GradeResponse;
 import cherry.dto.grade.GradeUpdateForm;
 import cherry.service.GradeService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

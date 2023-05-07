@@ -12,5 +12,5 @@ import javax.validation.constraints.NotNull;
 public class GradeUpdateForm {
 
     @NotNull(message = "점수는 필수값입니다")
-    private Long score;
+    private int score;
 }
