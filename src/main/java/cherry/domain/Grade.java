@@ -29,7 +29,7 @@ public class Grade extends BaseEntity {
     @ManyToOne
     private Subject subject;
 
-
+    //static 사용해야 서비스에서 of메소드를 사용할 수 있음🧩
     public static Grade of(Student student,Subject subject,int score){
 
         Grade grade = new Grade();
