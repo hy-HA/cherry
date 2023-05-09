@@ -15,15 +15,13 @@ public class StudentForm {
 
     @NotNull(message = "이름은 필수값입니다")
     private String studentName;
-    private String city;
-    private String street;
-    private String zipcode;
+    private StudentAddressForm address;
 
     @Data
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class StudentAddressFrom{
+    public static class StudentAddressForm{
         private String city;
         private String street;
         private String zipcode;

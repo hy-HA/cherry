@@ -13,7 +13,7 @@ public interface StudentMapper {
 
     StudentResponse toStudentResponse(Student student);
 
-    Address toAddress(StudentForm.StudentAddressFrom addressFrom);
+    Address toAddress(StudentForm.StudentAddressForm addressForm);
 
     StudentResponse.StudentAddressResponse toStudentAddressResponse(Address address);
 }

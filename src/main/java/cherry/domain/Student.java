@@ -1,10 +1,10 @@
 package cherry.domain;
 
 import cherry.domain.base.BaseEntity;
+import cherry.domain.value.Address;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Address;
 import org.hibernate.annotations.Where;
 import org.springframework.core.annotation.MergedAnnotation;
 
@@ -26,7 +26,7 @@ public class Student extends BaseEntity {
     private String studentName;
 
     @Embedded
-    private Address address;
+    private Address address = new Address();
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Grade> grades = new ArrayList<>();

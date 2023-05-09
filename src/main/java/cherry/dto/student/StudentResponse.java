@@ -14,9 +14,7 @@ public class StudentResponse {
 
     private Long id;
     private String studentName;
-    private String city;
-    private String street;
-    private String zipcode;
+    private StudentAddressResponse address;
 
     public StudentResponse(Student request) {
         this.id = request.getId();
